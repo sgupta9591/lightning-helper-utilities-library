@@ -1,0 +1,67 @@
+<aura:component extends="c:HelperUtilities" Controller="HelperUtilitiesDemoController">
+	
+	<!--public Attributes-->
+	<aura:attribute name="userName" type="String" default=""/>
+	<aura:attribute name="accounts" type="List" default="[]"/>
+
+	<!--Data Table Attributes-->
+	<aura:attribute name="columns" type="List" default="[]"/>
+	<aura:attribute name="rows" type="List" default="[]"/>
+
+	<!--Search Attributes-->
+	<aura:attribute name="searchString" type="String" default=""/>
+
+	<!--Handlers-->
+   	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+   	<!--Value Change Listeners-->
+   	<aura:handler name="change" value="{!v.searchString}" action="{!c.performSearch}"/>
+
+   	<!--Content-->
+   	<div class="slds-container">
+
+   		<!--Welcome Message-->
+   		<div class="slds-text-heading_medium slds-p-horizontal_medium slds-p-top_medium">
+   			Hey <i>{!v.userName}</i>, welcome to the <b>Helper Utilities</b> demo!
+   		</div>
+
+   		<!--Data Table Grid-->
+   		<aura:if isTrue="{! not( empty(v.columns) ) }">
+
+   			<!--Header-->
+   			<div class="slds-grid">
+
+   				<!--Title-->
+			  	<div class="slds-col slds-text-heading_large slds-p-horizontal_medium slds-p-top_medium">
+			    	Accounts
+			  	</div>
+
+			  	<!--Search-->
+			  	<div class="slds-col">
+			  		<lightning:input type="search" name="search" placeholder="Search" value="{!v.searchString}"/>
+			  	</div>
+
+			  	<!--Filters-->
+			  	<div class="slds-col slds-p-horizontal_medium slds-p-top_medium">
+			    	<!--<span>filters</span>-->
+			  	</div>
+
+			</div>
+
+			<!--Data Table-->
+	   		<div class="slds-p-horizontal_medium slds-p-top_small">
+		   		<lightning:datatable columns="{!v.columns}" data="{!v.rows}" keyField="Id" />
+		   	</div>
+
+		   	<!--No Results-->
+		   	<aura:if isTrue="{! empty(v.rows) }">
+		   		<div class="slds-col slds-text-heading_medium slds-p-around_medium">
+		   			No records found.
+		   		</div>
+		   	</aura:if>
+
+	   </aura:if>
+
+   	</div>
+
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component extensible="true" abstract="true">
+
+	<!--Handlers-->
+   	<aura:handler name="init" value="{!this}" action="{!c.initHelperUtilitiesBase}"/>
+
+	<!--Content--> 
+	{!v.body}
+	
+</aura:component>
